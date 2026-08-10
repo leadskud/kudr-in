@@ -248,7 +248,11 @@
       <div class="wrap pricing-grid">
         <div>
           <p class="eyebrow">Founding-client pilot</p>
-          <h2>390 000 ₽</h2>
+          <!-- Разряд склеен неразрывным пробелом, символ валюты вынесен в span:
+               «390 000 ₽» одним куском не влезало в колонку сетки, и ₽ уезжал на
+               отдельную строку тем же кеглем 96px — единственная цена на сайте
+               выглядела сломанной вёрсткой. -->
+          <h2 class="price-figure">390&nbsp;000<span class="currency">₽</span></h2>
           <p class="price-term">четыре недели · один workflow</p>
         </div>
         <div class="payment-steps">

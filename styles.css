@@ -202,7 +202,11 @@ h3 { font-size: 24px; line-height: 1.08; }
 .pricing { background: var(--accent-dark); color: #fff9f4; }
 .pricing .eyebrow { color: var(--paper); }
 .pricing-grid { display: grid; grid-template-columns: .9fr .8fr 1.1fr; gap: 70px; align-items: center; }
-.pricing h2 { font-size: clamp(58px, 7vw, 96px); }
+/* nowrap + меньший потолок кегля: «390 000 ₽» не помещалось в колонку .9fr, и перенос
+   выкидывал ₽ отдельной строкой в 96px. Символ валюты вдобавок уменьшен до .52em —
+   он единица измерения, а не часть числа, и в наборе не должен спорить с цифрами. */
+.pricing h2 { font-size: clamp(52px, 5.6vw, 84px); white-space: nowrap; }
+.price-figure .currency { font-size: .52em; margin-left: .14em; font-weight: 400; }
 .price-term { margin: 12px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
 .payment-steps { display: grid; grid-template-columns: repeat(3, 1fr); }
 .payment-steps div { padding: 18px; border-left: 1px solid rgba(255,255,255,.35); }
