@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kudrin Revenue Systems — workflow proof</title>
+  <link rel="canonical" href="https://kudr.in/demo/">
+  <style>
+    :root {
+      --ink: #15201d;
+      --muted: #66736e;
+      --paper: #f4f1e9;
+      --card: rgba(255, 255, 255, .84);
+      --line: #d8d5cb;
+      --accent: #ce4b2f;
+      --accent-soft: #f6ddd6;
+      --green: #31705a;
+      --green-soft: #dcebe4;
+      --amber: #9a6824;
+      --amber-soft: #f5ead2;
+      --blue: #315f75;
+      --blue-soft: #dce9ef;
+      --shadow: 0 20px 60px rgba(30, 42, 37, .10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font: 15px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 82% 10%, rgba(206, 75, 47, .12), transparent 24rem),
+        radial-gradient(circle at 8% 78%, rgba(49, 112, 90, .10), transparent 30rem),
+        var(--paper);
+      min-height: 100vh;
+    }
+    button { font: inherit; }
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 30px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: -.02em; }
+    .mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; color: white; background: var(--ink); }
+    .demo-badge { padding: 8px 12px; border: 1px solid #e2a999; border-radius: 999px; color: #8e321f; background: var(--accent-soft); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+    .hero { display: grid; grid-template-columns: 1.5fr .8fr; gap: 28px; align-items: end; margin-bottom: 26px; }
+    h1 { margin: 0; max-width: 780px; font: 700 clamp(38px, 6vw, 72px)/.98 Georgia, serif; letter-spacing: -.045em; }
+    .lead { max-width: 660px; margin: 20px 0 0; color: var(--muted); font-size: 18px; }
+    .hero-note { border-left: 3px solid var(--accent); padding: 6px 0 6px 18px; color: var(--muted); }
+    .hero-note strong { display: block; color: var(--ink); margin-bottom: 4px; }
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 34px 0 22px; }
+    .step { appearance: none; border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px; text-align: left; color: var(--muted); background: rgba(255,255,255,.55); cursor: pointer; transition: .18s ease; }
+    .step:hover { transform: translateY(-2px); border-color: #aaa79d; }
+    .step.active { color: white; background: var(--ink); border-color: var(--ink); box-shadow: var(--shadow); }
+    .step small { display: block; opacity: .72; margin-bottom: 2px; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(290px, .65fr); gap: 18px; }
+    .panel { border: 1px solid var(--line); border-radius: 22px; background: var(--card); box-shadow: var(--shadow); overflow: hidden; backdrop-filter: blur(10px); }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+    .panel-head h2 { margin: 0; font: 700 24px/1.1 Georgia, serif; }
+    .run-id { color: var(--muted); font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .view { display: none; padding: 22px; }
+    .view.active { display: block; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.62); }
+    .label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .07em; }
+    .value { font-weight: 650; }
+    .status { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 999px; font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: .05em; }
+    .verified { color: var(--green); background: var(--green-soft); }
+    .inferred { color: var(--blue); background: var(--blue-soft); }
+    .conflict { color: var(--amber); background: var(--amber-soft); }
+    .unknown { color: #6f6561; background: #ebe7e5; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .07em; }
+    td { font-size: 13px; }
+    .callout { margin-top: 16px; padding: 16px; border-radius: 14px; background: var(--amber-soft); color: #69491c; }
+    .actions { display: flex; gap: 10px; margin-top: 18px; }
+    .btn { border: 0; border-radius: 12px; padding: 11px 16px; cursor: pointer; font-weight: 700; }
+    .btn-primary { color: white; background: var(--green); }
+    .btn-secondary { color: var(--ink); background: #e7e4dc; }
+    .side { padding: 22px; }
+    .side h3 { margin: 0 0 14px; font: 700 20px Georgia, serif; }
+    .timeline { display: grid; gap: 6px; }
+    .event { display: grid; grid-template-columns: 18px 1fr; gap: 10px; padding: 10px 0; }
+    .dot { width: 10px; height: 10px; margin-top: 6px; border-radius: 50%; background: #c5c1b8; box-shadow: 0 0 0 4px #eeebe4; }
+    .event.done .dot { background: var(--green); }
+    .event.current .dot { background: var(--accent); }
+    .event strong { display: block; font-size: 13px; }
+    .event span { color: var(--muted); font-size: 12px; }
+    .metric { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .metric span { color: var(--muted); }
+    .footnote { margin-top: 18px; color: var(--muted); font-size: 12px; }
+    .decision { margin-top: 18px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; }
+    .decision strong { display: block; margin-bottom: 4px; }
+    @media (max-width: 800px) {
+      .hero, .workspace { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="mark">KR</span><span>Kudrin Revenue Systems</span></div>
+      <div class="demo-badge">Synthetic demo · not a client case</div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>От account criteria до принятой CRM-записи.</h1>
+        <p class="lead">Один контролируемый workflow: provenance, явное неизвестное, human review и журнал ошибок до записи в production CRM.</p>
+      </div>
+      <div class="hero-note"><strong>Что здесь доказывается</strong>Не «умный ответ модели», а управляемость процесса и передача ownership клиенту.</div>
+    </section>
+
+    <nav class="flow" aria-label="Workflow stages">
+      <button class="step active" data-view="input"><small>01</small>Input</button>
+      <button class="step" data-view="research"><small>02</small>Research</button>
+      <button class="step" data-view="review"><small>03</small>Human review</button>
+      <button class="step" data-view="crm"><small>04</small>CRM write</button>
+      <button class="step" data-view="qa"><small>05</small>QA & transfer</button>
+    </nav>
+
+    <section class="workspace">
+      <article class="panel">
+        <div class="panel-head"><h2 id="view-title">Вход и границы</h2><span class="run-id">DEMO-RUN-014</span></div>
+
+        <div class="view active" id="input">
+          <div class="grid-2">
+            <div class="field"><span class="label">Account</span><span class="value">Northstar Components</span></div>
+            <div class="field"><span class="label">Domain</span><span class="value">northstar-components.example</span></div>
+            <div class="field"><span class="label">Required geography</span><span class="value">Central Europe</span></div>
+            <div class="field"><span class="label">Required segment</span><span class="value">Industrial components</span></div>
+          </div>
+          <div class="callout"><strong>Scope boundary:</strong> персональные контакты и автоматическая коммуникация в этом demo не собираются. Конец процесса — принятая человеком account-запись.</div>
+        </div>
+
+        <div class="view" id="research">
+          <table>
+            <thead><tr><th>Field</th><th>Value</th><th>Status</th><th>Provenance</th></tr></thead>
+            <tbody>
+              <tr><td>Geography</td><td>Central Europe</td><td><span class="status verified">verified</span></td><td>Demo source A</td></tr>
+              <tr><td>Segment</td><td>Industrial components</td><td><span class="status verified">verified</span></td><td>Demo source A</td></tr>
+              <tr><td>Employee range</td><td>200–500 / 500–1000</td><td><span class="status conflict">conflict</span></td><td>Source A / Source B</td></tr>
+              <tr><td>CRM</td><td>HubSpot</td><td><span class="status inferred">inferred</span></td><td>Demo vacancy</td></tr>
+              <tr><td>Budget owner</td><td>Not found</td><td><span class="status unknown">unknown</span></td><td>No permissible source</td></tr>
+            </tbody>
+          </table>
+          <div class="callout">Система не выбирает удобное значение при конфликте. Она сохраняет оба источника и блокирует factual write для поля.</div>
+        </div>
+
+        <div class="view" id="review">
+          <div class="field"><span class="label">Reviewer decision</span><span class="value" id="review-status">Waiting for human decision</span></div>
+          <div class="decision"><strong>Recommended</strong>Return for clarification: подтвердить employee range или исключить его из qualification. Budget owner сохранить как unknown.</div>
+          <div class="actions">
+            <button class="btn btn-secondary" id="return-btn">Return with reason</button>
+            <button class="btn btn-primary" id="accept-btn">Accept safe fields</button>
+          </div>
+          <p class="footnote">Оба решения журналируются. Accept не превращает inferred/unknown в verified.</p>
+        </div>
+
+        <div class="view" id="crm">
+          <table>
+            <thead><tr><th>CRM field</th><th>Write</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>company_name</td><td>Northstar Components</td><td>verified only</td></tr>
+              <tr><td>industry_segment</td><td>Industrial components</td><td>verified only</td></tr>
+              <tr><td>employee_range</td><td>—</td><td>blocked: source conflict</td></tr>
+              <tr><td>research_note</td><td>Possible RevOps scaling trigger</td><td>explicit hypothesis label</td></tr>
+              <tr><td>research_gaps</td><td>Budget owner; employee range</td><td>unknown is stored, not hidden</td></tr>
+            </tbody>
+          </table>
+          <div class="callout" id="crm-gate"><strong>CRM writer blocked.</strong> Требуется Accept в human review.</div>
+        </div>
+
+        <div class="view" id="qa">
+          <div class="grid-2">
+            <div class="field"><span class="label">Open critical defects</span><span class="value">0</span></div>
+            <div class="field"><span class="label">Known conflicts</span><span class="value">1, visible to reviewer</span></div>
+            <div class="field"><span class="label">Handover status</span><span class="value">Demo checklist ready</span></div>
+            <div class="field"><span class="label">Decision</span><span class="value">Scale / stop / redesign</span></div>
+          </div>
+          <div class="callout"><strong>Transfer, not dependency:</strong> runbook, schema, mapping, access register, error codes, rollback и обучение передаются клиенту.</div>
+        </div>
+      </article>
+
+      <aside class="panel side">
+        <h3>Run status</h3>
+        <div class="timeline">
+          <div class="event done"><i class="dot"></i><div><strong>Input validated</strong><span>Required identifiers present</span></div></div>
+          <div class="event done"><i class="dot"></i><div><strong>Research complete</strong><span>3 verified · 1 inferred · 1 conflict</span></div></div>
+          <div class="event current" id="review-event"><i class="dot"></i><div><strong>Human review</strong><span id="event-copy">Decision required</span></div></div>
+          <div class="event" id="crm-event"><i class="dot"></i><div><strong>CRM write</strong><span id="crm-copy">Blocked by gate</span></div></div>
+          <div class="event"><i class="dot"></i><div><strong>Transfer log</strong><span>Captured after run</span></div></div>
+        </div>
+        <h3 style="margin-top:26px">Process metrics</h3>
+        <div class="metric"><span>Completeness</span><strong>80%</strong></div>
+        <div class="metric"><span>Verified fields</span><strong>3 / 5</strong></div>
+        <div class="metric"><span>Hidden uncertainty</span><strong>0</strong></div>
+        <div class="metric"><span>Automatic outreach</span><strong>Off</strong></div>
+        <p class="footnote">Все цифры на этой странице синтетические и показывают только формат измерения.</p>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const titles = {
+      input: 'Вход и границы',
+      research: 'Research с provenance',
+      review: 'Решение человека',
+      crm: 'Безопасная запись в CRM',
+      qa: 'QA и передача'
+    };
+    document.querySelectorAll('.step').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.step, .view').forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.view).classList.add('active');
+        document.getElementById('view-title').textContent = titles[button.dataset.view];
+      });
+    });
+    document.getElementById('return-btn').addEventListener('click', () => {
+      document.getElementById('review-status').textContent = 'Returned: resolve employee range conflict';
+      document.getElementById('event-copy').textContent = 'Returned with reason';
+      document.getElementById('crm-gate').innerHTML = '<strong>CRM writer blocked.</strong> Запись возвращена на уточнение; причина добавлена в error log.';
+    });
+    document.getElementById('accept-btn').addEventListener('click', () => {
+      document.getElementById('review-status').textContent = 'Accepted: safe fields only';
+      document.getElementById('event-copy').textContent = 'Accepted by reviewer';
+      document.getElementById('review-event').classList.remove('current');
+      document.getElementById('review-event').classList.add('done');
+      document.getElementById('crm-event').classList.add('done');
+      document.getElementById('crm-copy').textContent = 'Safe fields written';
+      document.getElementById('crm-gate').innerHTML = '<strong>CRM write complete.</strong> Conflict omitted; hypothesis and gaps сохранились с явными метками.';
+    });
+  </script>
+</body>
+</html>

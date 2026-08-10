@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Никита Кудрин — автоматизация account research и pipeline operations</title>
+  <meta name="description" content="Проектирую, запускаю и передаю B2B-командам один измеримый workflow: account research, проверка данных и запись результата в CRM.">
+  <meta name="theme-color" content="#10231d">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Account research без ручного хаоса">
+  <meta property="og:description" content="Один B2B-workflow за четыре недели: baseline, build, controlled operate и передача команде.">
+  <link rel="canonical" href="https://kudr.in/">
+  <meta property="og:url" content="https://kudr.in/">
+  <meta property="og:site_name" content="Никита Кудрин">
+  <!-- Абсолютный URL обязателен: относительный путь в og:image часть парсеров
+       (в том числе предпросмотр в почтовых клиентах) не разворачивает и молча отдаёт
+       пустую карточку — а это первое, что видит адресат холодного письма. -->
+  <meta property="og:image" content="https://kudr.in/og-image.png">
+  <meta property="og:image:secure_url" content="https://kudr.in/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Account research без ручного хаоса — Никита Кудрин, kudr.in">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Account research без ручного хаоса">
+  <meta name="twitter:description" content="Один B2B-workflow за четыре недели: baseline, build, controlled operate и передача команде.">
+  <meta name="twitter:image" content="https://kudr.in/og-image.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Никита Кудрин",
+        "jobTitle": "Архитектор и оператор систем B2B-продаж",
+        "email": "mailto:nikita@kudr.in"
+      },
+      {
+        "@type": "Service",
+        "name": "Пилот автоматизации account research и pipeline operations",
+        "provider": {"@type": "Person", "name": "Никита Кудрин"},
+        "areaServed": "RU",
+        "description": "Четырёхнедельное внедрение одного workflow: baseline, сборка, controlled operate и передача команде клиента."
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#content">К содержанию</a>
+
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <!-- aria-label снят намеренно: он ЗАМЕНЯЛ доступное имя строкой «Никита Кудрин —
+           главная», в которую не входил видимый текст «Revenue systems architect».
+           Пользователь голосового управления говорит то, что ВИДИТ, — и ссылка не
+           срабатывала. Без атрибута имя собирается из содержимого и совпадает с видимым. -->
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">NK</span>
+        <span>
+          <strong>Никита Кудрин</strong>
+          <small>Revenue systems architect</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#process">Как работает</a>
+        <a href="#proof">Что покажу</a>
+        <a href="#fit">Кому подходит</a>
+      </nav>
+      <a class="button button-small" href="mailto:nikita@kudr.in?subject=Обсудить%20account%20research%20процесс">Обсудить процесс</a>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Account research · pipeline operations · CRM</p>
+          <h1>Account research без ручного хаоса.</h1>
+          <p class="lead">За четыре недели проектирую, собираю и запускаю один B2B-workflow: от критериев компании и проверки данных до принятой записи в CRM.</p>
+          <p class="hero-note">С baseline, human review, журналом качества и передачей вашей команде — без обязательного ретейнера.</p>
+          <div class="hero-actions">
+            <a class="button" href="mailto:nikita@kudr.in?subject=Обсудить%20account%20research%20процесс&body=Коротко%20опишите%3A%20что%20запускает%20процесс%2C%20кто%20его%20выполняет%2C%20кто%20принимает%20результат%20и%20куда%20он%20должен%20попасть.">Обсудить процесс — 30 минут</a>
+            <a class="text-link" href="demo/index.html">Посмотреть synthetic demo <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="workflow-card" aria-label="Схема workflow">
+          <div class="workflow-head">
+            <span>Один контролируемый workflow</span>
+            <span class="status-dot">Human in the loop</span>
+          </div>
+          <ol class="workflow-list">
+            <li><span>01</span><strong>Account criteria</strong><small>Границы и обязательные поля</small></li>
+            <li><span>02</span><strong>Research</strong><small>Источники и provenance</small></li>
+            <li><span>03</span><strong>Human review</strong><small>Принять, вернуть, уточнить</small></li>
+            <li><span>04</span><strong>CRM write</strong><small>Только принятая запись</small></li>
+            <li><span>05</span><strong>QA & transfer</strong><small>Метрики, runbook, ownership</small></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="wrap commercial-strip" aria-label="Коммерческие параметры">
+        <span><strong>1</strong> workflow</span>
+        <span><strong>4</strong> недели</span>
+        <span><strong>390 000 ₽</strong> founding price</span>
+        <span><strong>≤ 2</strong> интеграций</span>
+        <span><strong>30 дней</strong> defect support</span>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="wrap split-heading">
+        <div>
+          <p class="eyebrow eyebrow-light">Узнаёте процесс?</p>
+          <h2>Сильные сотрудники снова собирают одну и ту же запись.</h2>
+        </div>
+        <div class="problem-list">
+          <p><span>01</span>Данные о компании и ЛПР живут в сайтах, таблицах, переписке и памяти людей.</p>
+          <p><span>02</span>Обязательные поля заполняются неодинаково, а источник факта теряется.</p>
+          <p><span>03</span>CRM получает неполный контекст — следующий человек начинает research заново.</p>
+          <p><span>04</span>Руководитель не видит время на account, очередь, качество и стоимость переделок.</p>
+        </div>
+      </div>
+      <div class="wrap rule-note">Автоматизировать имеет смысл только повторяемый процесс с владельцем, реальными данными и измеримым baseline.</div>
+    </section>
+
+    <section class="section outcomes">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Что останется через четыре недели</p>
+          <h2>Не прототип. Рабочий процесс, который можно принять и продолжить.</h2>
+        </div>
+        <div class="outcome-grid">
+          <article><span>01</span><h3>Согласованная схема</h3><p>Input → research → verification → brief → human review → CRM.</p></article>
+          <article><span>02</span><h3>Явная неопределённость</h3><p><code>unknown / not verified</code> вместо уверенно выдуманных полей.</p></article>
+          <article><span>03</span><h3>Human gate</h3><p>Ничего не записывается в production CRM без принятия человеком.</p></article>
+          <article><span>04</span><h3>Контроль качества</h3><p>Журнал ошибок, возвратов, конфликтов источников и ручных исправлений.</p></article>
+          <article><span>05</span><h3>Scorecard</h3><p>Время, completeness, acceptance без исправлений и стоимость операции.</p></article>
+          <article><span>06</span><h3>Передача ownership</h3><p>Runbook, доступы, обучение и возможность работать без автора системы.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="process">
+      <div class="wrap">
+        <div class="section-heading heading-row">
+          <div>
+            <p class="eyebrow">Build → operate → transfer</p>
+            <h2>Результат появляется по ходу проекта, а не в последний день.</h2>
+          </div>
+          <p>Ориентиры действуют при своевременных доступах и обратной связи. Точный календарь фиксируется в SOW.</p>
+        </div>
+        <ol class="timeline">
+          <li><div class="timeline-time">День 1–5</div><div><h3>Specify</h3><p>Current process map, baseline, data schema, риски и критерии приёмки.</p></div></li>
+          <li><div class="timeline-time">До дня 14</div><div><h3>Build</h3><p>Рабочее demo на согласованной выборке и первая измеримая итерация.</p></div></li>
+          <li><div class="timeline-time">Неделя 3</div><div><h3>Operate</h3><p>Review, error log, исправления и повторный прогон вместе с командой.</p></div></li>
+          <li><div class="timeline-time">Неделя 4</div><div><h3>Transfer</h3><p>Workflow, документация, обучение и решение <code>scale / stop / redesign</code>.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section proof" id="proof">
+      <div class="wrap proof-grid">
+        <div class="proof-copy">
+          <p class="eyebrow">До покупки</p>
+          <h2>Смотрите не на обещание, а на способ работы.</h2>
+          <p>Demo проходит весь путь от критериев account до human review и CRM write. Рядом — артефакты, по которым принимается реальный проект.</p>
+          <ul class="check-list">
+            <li>account brief с provenance и конфликтом источников;</li>
+            <li>QA/error log и правила <code>unknown</code>;</li>
+            <li>baseline и acceptance scorecard;</li>
+            <li>reference architecture и handover sample.</li>
+          </ul>
+          <a class="button button-outline" href="demo/index.html">Открыть интерактивное demo</a>
+          <p class="caption">Synthetic demo показывает метод и контроль. Оно не выдаётся за результат клиента.</p>
+        </div>
+        <!-- Видимый текст ссылки — «Открыть demo»; доступное имя обязано его СОДЕРЖАТЬ.
+             Было «Открыть synthetic demo» — подстроки «Открыть demo» в нём нет. -->
+        <a class="demo-frame" href="demo/index.html" aria-label="Открыть demo — synthetic пример процесса">
+          <img src="demo/preview.png" alt="Экран synthetic demo: account criteria, human review, CRM write и process metrics" width="1440" height="1000">
+          <span>Открыть demo <b aria-hidden="true">↗</b></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section experience">
+      <div class="wrap">
+        <div class="proof-strip" aria-label="Проверенный опыт">
+          <div><strong>9 лет</strong><span>в B2B pipeline</span></div>
+          <div><strong>59 000+</strong><span>компаний в контуре</span></div>
+          <div><strong>15+ стран</strong><span>международный охват</span></div>
+          <div><strong>50+ досье</strong><span>enterprise research</span></div>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card case-primary">
+            <p class="case-label">Анонимизированный опыт · IT-аутстаффинг</p>
+            <h3>Международный revenue-контур</h3>
+            <p>Девять лет управлял B2B pipeline, который связывал сегментацию, research, delivery, CRM-квалификацию и операционную аналитику.</p>
+            <div class="case-result"><strong>×35</strong><span>рост инфраструктуры за пять лет</span></div>
+            <a class="text-link" href="mailto:nikita@kudr.in?subject=Запросить%20разбор%20кейса">Запросить разбор кейса <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="case-card">
+            <p class="case-label">Capability case · 2026</p>
+            <h3>Enterprise account research engine</h3>
+            <p>Система выпустила более 50 структурированных досье. Живая почта подтверждает регулярную передачу материалов постоянной BD-команде.</p>
+            <div class="case-result"><strong>18</strong><span>production-handoff за 4 месяца</span></div>
+            <p class="caption">Подтверждены production и передача. Встречи и pipeline outcome пока не измерены.</p>
+          </article>
+        </div>
+
+        <p class="evidence-note">Цифры проверены по CRM, задачам, переписке и рабочим документам. Если источник или личная роль не восстановлены, показатель не публикуется.</p>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="fit">
+      <div class="wrap fit-grid">
+        <div class="fit-column fit-yes">
+          <p class="eyebrow eyebrow-light">Пилот подходит</p>
+          <h2>Есть процесс, который уже существует.</h2>
+          <ul>
+            <li>Research повторяется еженедельно или ежедневно.</li>
+            <li>Есть process owner и CRM destination.</li>
+            <li>Доступны реальные входные данные и контрольная выборка.</li>
+            <li>Команда готова проверять промежуточный результат.</li>
+            <li>Успех принимается по процессным метрикам.</li>
+          </ul>
+        </div>
+        <div class="fit-column fit-no">
+          <p class="eyebrow eyebrow-light">Не подходит</p>
+          <h2>Нужно обещание продаж или перестройка всего сразу.</h2>
+          <ul>
+            <li>Нужны гарантированные лиды, встречи, сделки или ROI.</li>
+            <li>Надо одновременно менять CRM, ICP, outbound и отдел продаж.</li>
+            <li>Нет владельца процесса или законного доступа к данным.</li>
+            <li>Ожидается постоянное выполнение вместо передачи системы.</li>
+            <li>Scope должен меняться без ограничений фиксированной цены.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing">
+      <div class="wrap pricing-grid">
+        <div>
+          <p class="eyebrow">Founding-client pilot</p>
+          <h2>390 000 ₽</h2>
+          <p class="price-term">четыре недели · один workflow</p>
+        </div>
+        <div class="payment-steps">
+          <div><strong>50%</strong><span>подписание и старт</span></div>
+          <div><strong>30%</strong><span>рабочее demo</span></div>
+          <div><strong>20%</strong><span>transfer</span></div>
+        </div>
+        <div class="scope-notes">
+          <p>API, серверы, лицензии и платные данные оплачиваются отдельно.</p>
+          <p>30 дней исправления воспроизводимых дефектов включено.</p>
+          <p>Новый workflow или интеграция сверх scope — отдельный SOW.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about">
+      <div class="wrap about-grid">
+        <div class="portrait-placeholder" aria-label="Никита Кудрин">
+          <span>NK</span>
+          <small>9 лет в B2B pipeline</small>
+        </div>
+        <div>
+          <p class="eyebrow">Кто ведёт работу</p>
+          <h2>Никита Кудрин — архитектор и оператор систем B2B-продаж.</h2>
+          <p class="about-lead">Большую часть карьеры я работал в предпринимательской среде: запускал процессы с нуля при ограниченных ресурсах, проверял гипотезы, управлял командами и бюджетами, а временные решения превращал в управляемые системы.</p>
+          <p>Я работаю в двух регистрах: сначала вместе с владельцем процесса фиксирую границы и критерии качества, затем сам собираю систему и работаю в ней с командой до передачи.</p>
+          <p>Моя цель — не продлить собственный ретейнер, а оставить вам управляемый workflow, документацию и ownership.</p>
+          <p class="signature">Никита Кудрин <span>·</span> ИП <span>·</span> Kudrin Revenue Systems</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta">
+      <div class="wrap cta-box">
+        <p class="eyebrow eyebrow-light">Следующий шаг</p>
+        <h2>Есть один ручной процесс, который регулярно отнимает часы?</h2>
+        <p>Напишите в двух-трёх предложениях: что запускает процесс, кто выполняет работу, кто принимает результат и куда он должен попасть. За 30 минут определим <code>fit / diagnostic / no fit</code>.</p>
+        <a class="button button-light" href="mailto:nikita@kudr.in?subject=Обсудить%20account%20research%20процесс&body=1.%20Что%20запускает%20процесс%3A%0A2.%20Кто%20выполняет%20работу%3A%0A3.%20Кто%20принимает%20результат%3A%0A4.%20Куда%20он%20должен%20попасть%3A">Написать на nikita@kudr.in</a>
+        <small>Если пилот нерационален, я так и скажу.</small>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>Никита Кудрин</strong>
+        <p>Kudrin Revenue Systems</p>
+      </div>
+      <div>
+        <a href="mailto:nikita@kudr.in">nikita@kudr.in</a>
+        <p>Реквизиты ИП — по запросу</p>
+      </div>
+      <div class="footer-note">Статическая версия без cookies, форм, аналитики и рекламных пикселей.</div>
+      <div class="footer-copy">© 2026</div>
+    </div>
+  </footer>
+</body>
+</html>
