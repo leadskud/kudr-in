@@ -75,14 +75,14 @@ code {
 .button-small { min-height: 40px; padding-inline: 16px; font-size: 12px; }
 .button-outline { color: var(--ink); background: transparent; }
 .button-outline:hover { color: var(--paper); }
-.button-light { color: var(--ink); border-color: var(--paper); background: var(--paper); }
-.button-light:hover { color: var(--paper); background: transparent; }
+.button-light { color: var(--white); border-color: var(--accent-dark); background: var(--accent-dark); }
+.button-light:hover { color: var(--accent-dark); background: transparent; }
 .text-link { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 800; text-decoration: none; border-bottom: 1px solid currentColor; }
 
 .hero { padding: 94px 0 28px; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.04fr .96fr; gap: 72px; align-items: center; }
 .eyebrow { margin: 0 0 18px; color: var(--accent-dark); font-size: 11px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
-.eyebrow-light { color: #e58d75; }
+.eyebrow-light { color: var(--accent-dark); }
 h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 700; letter-spacing: -.035em; }
 h1 { max-width: 720px; font-size: clamp(58px, 6.7vw, 96px); line-height: .91; }
 h2 { font-size: clamp(38px, 4.5vw, 62px); line-height: 1; }
@@ -112,15 +112,19 @@ h3 { font-size: 24px; line-height: 1.08; }
 .commercial-strip strong { color: var(--ink); font-size: 18px; text-transform: none; letter-spacing: -.02em; }
 
 .section { padding: 116px 0; }
-.section-dark { color: var(--paper); background: var(--ink); }
+/* Была тёмно-зелёная плита на 747px — самая большая тёмная масса страницы.
+   Светлая тема из свайпа держится на белом ground и ТИНТАХ, а не на инверсии.
+   Кремовый --paper здесь работает ровно так, как #f7f7f7 у Zillow: отбивает
+   секцию, не утяжеляя её. */
+.section-dark { color: var(--ink); background: var(--paper); }
 .section-tinted { background: var(--paper-deep); }
 .section-heading { max-width: 800px; margin-bottom: 54px; }
 .section-heading h2 { max-width: 780px; }
 .split-heading { display: grid; grid-template-columns: .95fr 1.05fr; gap: 90px; }
-.problem-list p { display: grid; grid-template-columns: 36px 1fr; gap: 14px; margin: 0; padding: 20px 0; border-top: 1px solid rgba(245, 241, 232, .18); color: #d2d8d4; font-size: 17px; }
-.problem-list p:last-child { border-bottom: 1px solid rgba(245, 241, 232, .18); }
-.problem-list span { color: #e58d75; font-size: 11px; font-weight: 800; }
-.rule-note { margin-top: 70px; padding: 22px 28px; border-left: 3px solid var(--accent); background: rgba(255,255,255,.05); color: #cbd4cf; }
+.problem-list p { display: grid; grid-template-columns: 36px 1fr; gap: 14px; margin: 0; padding: 20px 0; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 17px; }
+.problem-list p:last-child { border-bottom: 1px solid var(--line); }
+.problem-list span { color: var(--accent-dark); font-size: 11px; font-weight: 800; }
+.rule-note { margin-top: 70px; padding: 22px 28px; border-left: 3px solid var(--accent-dark); background: var(--white); color: var(--ink-soft); border-radius: 0 12px 12px 0; }
 
 .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .outcome-grid article { min-height: 240px; padding: 30px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -231,12 +235,15 @@ h3 { font-size: 24px; line-height: 1.08; }
 .signature span { color: var(--accent); padding-inline: 7px; }
 
 .final-cta { padding-top: 0; }
-.cta-box { padding: 64px 56px; color: var(--paper); border-radius: 12px; background: var(--ink); text-align: center; }
+/* Финальный CTA у Zillow — не тёмная плита, а светлая карточка с яркой кнопкой.
+   Тёмный блок на 577px был вторым источником «тяжести»; контраст теперь несёт
+   КНОПКА, а не инверсия всей секции. */
+.cta-box { padding: 64px 56px; color: var(--ink); border-radius: 12px; background: var(--paper); text-align: center; box-shadow: 0 4px 16px rgba(18, 33, 28, .08); }
 .cta-box h2 { max-width: 850px; margin-inline: auto; }
-.cta-box > p:not(.eyebrow) { max-width: 720px; margin: 24px auto; color: #c7d1cc; font-size: 17px; }
-.cta-box code { background: rgba(255,255,255,.1); }
+.cta-box > p:not(.eyebrow) { max-width: 720px; margin: 24px auto; color: var(--ink-soft); font-size: 17px; }
+.cta-box code { background: var(--white); }
 .cta-box .button { margin-top: 10px; }
-.cta-box small { display: block; margin-top: 18px; color: #9fada6; }
+.cta-box small { display: block; margin-top: 18px; color: var(--ink-soft); }
 
 .site-footer { padding: 42px 0 60px; border-top: 1px solid var(--line); }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1.4fr auto; gap: 30px; color: var(--ink-soft); font-size: 12px; }
